@@ -26,6 +26,13 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
 
+    params[:purchase][:product_ids].each do |product_id|
+      unless product_id.empty?
+      product = Product.find(product_id)
+        @purchase.products << product
+      end
+    end
+
     respond_to do |format|
       if @purchase.save
         format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
@@ -40,6 +47,14 @@ class PurchasesController < ApplicationController
   # PATCH/PUT /purchases/1
   # PATCH/PUT /purchases/1.json
   def update
+
+    params[:purchase][:product_ids].each do |product_id|
+      unless product_id.empty?
+      product = Product.find(product_id)
+        @purchase.products << product
+      end
+    end
+
     respond_to do |format|
       if @purchase.update(purchase_params)
         format.html { redirect_to @purchase, notice: 'Purchase was successfully updated.' }

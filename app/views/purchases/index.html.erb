@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Total</th>
+      <th>Products</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
     <% @purchases.each do |purchase| %>
       <tr>
         <td><%= purchase.total %></td>
+        <td><%= purchase.products.map(&:name).join(", ") %></td>
         <td><%= link_to 'Show', purchase %></td>
         <td><%= link_to 'Edit', edit_purchase_path(purchase) %></td>
         <td><%= link_to 'Destroy', purchase, method: :delete, data: { confirm: 'Are you sure?' } %></td>

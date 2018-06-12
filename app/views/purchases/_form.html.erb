@@ -16,6 +16,11 @@
     <%= form.text_field :total %>
   </div>
 
+  <div class="field">
+    <%= form.label :products %>
+    <%= collection_select(:purchase, :product_ids, Product.all, :id, :name, {}, { :multiple => true } )%>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
